@@ -20,6 +20,9 @@ use App\Http\Resources\Food as FoodResource;
 
 Route::get('/food', function() {
     $foods = App\Food::all();
-
     return FoodResource::collection($foods);
+});
+
+Route::get('/food/{id}', function($id) {
+    return new FoodResource(App\Food::find($id));
 });
