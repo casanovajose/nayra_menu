@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Resources\Food as FoodResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/food', function() {
+    $foods = App\Food::all();
+
+    return FoodResource::collection($foods);
 });
