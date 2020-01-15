@@ -26,3 +26,12 @@ Route::get('/food', function() {
 Route::get('/food/{id}', function($id) {
     return new FoodResource(App\Food::find($id));
 });
+
+Route::post('/food', function(Request $request) {
+    $newFood = new App\Food;
+    $newFood->count = 1;
+    $newFood->last_time = date('Y-m-d');
+    $newFood->fill($request->all());
+    $newFood->save();
+    return new FoodResource($newFood);
+});
